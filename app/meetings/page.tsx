@@ -3,7 +3,7 @@ import { SacramentMeeting } from "@/lib/types";
 
 async function getMeetings(): Promise<SacramentMeeting[]> {
   const response = await fetch(
-    "http://localhost:3000/api/meetings",
+    "https://sacrament-meetings-lrrdwtr69-wdd-434.vercel.app/api/meetings",
     {
       cache: "no-store",
     }
