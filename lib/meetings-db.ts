@@ -150,6 +150,25 @@ export const meetings: SacramentMeeting[] = [
     closingHymn: { number: 193, title: 'I Stand All Amazed' },
     closingPrayer: 'Sister Moore',
     announcements: ['Ward picnic: June 27']
+    },
+    {
+    id: 9,
+    date: '2026-07-05',
+    meetingType: 'regular',
+    presiding: 'Bishop Smith',
+    conducting: 'Brother Anderson',
+    openingHymn: { number: 100, title: 'Nearer, My God, to Thee' },
+    openingPrayer: 'Brother Hernandez',
+    wardBusiness: [{ description: 'Sustaining new elders quorum instructor' }],
+    stakeBusiness: false,
+    sacramentHymn: { number: 187, title: 'God Loved Us, So He Sent His Son' },
+    speakers: [
+      { name: 'Sister Garcia', topic: 'The Atonement of Jesus Christ', type: 'speaker' },
+      { name: 'Ward Choir', topic: '', type: 'musical-number' }
+    ],
+    closingHymn: { number: 193, title: 'I Stand All Amazed' },
+    closingPrayer: 'Sister Moore',
+    announcements: ['Ward picnic: June 27']
   }
 ];
 
