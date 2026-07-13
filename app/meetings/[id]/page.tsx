@@ -1,13 +1,21 @@
 import { notFound } from "next/navigation";
-import { getBaseUrl } from "@/lib/api";
+// import { getBaseUrl } from "@/lib/api";
 import MeetingDetail from "@/components/MeetingDetail";
 import { SacramentMeeting } from "@/lib/types";
+import { headers } from "next/headers";
 
 async function fetchMeeting(
   id: string
 ): Promise<SacramentMeeting | null> {
+  const host = (await headers()).get("host");
+
+  const protocol =
+    process.env.NODE_ENV === "development"
+      ? "http"
+      : "https";
+
   const response = await fetch(
-    `${getBaseUrl()}/api/meetings/${id}`,
+    `${protocol}://${host}/api/meetings/${id}`,
     {
       cache: "no-store",
     }
@@ -15,6 +23,12 @@ async function fetchMeeting(
 
   if (response.status === 404) {
     return null;
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch meeting: ${response.status}`
+    );
   }
 
   return response.json();

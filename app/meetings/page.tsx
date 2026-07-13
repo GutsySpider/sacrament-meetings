@@ -1,10 +1,18 @@
-import { getBaseUrl } from "@/lib/api";
+// import { getBaseUrl } from "@/lib/api";
 import MeetingCard from "@/components/MeetingCard";
 import { SacramentMeeting } from "@/lib/types";
+import { headers } from "next/headers";
 
 async function fetchMeetings(): Promise<SacramentMeeting[]> {
+  const host = (await headers()).get("host");
+
+  const protocol =
+    process.env.NODE_ENV === "development"
+      ? "http"
+      : "https";
+
   const response = await fetch(
-    `${getBaseUrl()}/api/meetings`,
+    `${protocol}://${host}/api/meetings`,
     {
       cache: "no-store",
     }
@@ -14,7 +22,8 @@ async function fetchMeetings(): Promise<SacramentMeeting[]> {
     throw new Error(
       `Failed to fetch meetings: ${response.status}`
     );
-  }
+    }
+    
 
   return response.json();
 }
