@@ -10,6 +10,12 @@ async function fetchMeetings(): Promise<SacramentMeeting[]> {
     }
   );
 
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch meetings: ${response.status}`
+    );
+  }
+
   return response.json();
 }
 
