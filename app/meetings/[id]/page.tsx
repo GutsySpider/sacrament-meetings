@@ -6,7 +6,7 @@ async function getMeeting(
   id: string
 ): Promise<SacramentMeeting | null> {
   const response = await fetch(
-    `http://localhost:3000/api/meetings/${id}`,
+    `https://sacrament-meetings-lrrdwtr69-wdd-434.vercel.app/api/meetings/${id}`,
     {
       cache: "no-store",
     }
