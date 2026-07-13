@@ -1,9 +1,10 @@
+import { getBaseUrl } from "@/lib/api";
 import MeetingCard from "@/components/MeetingCard";
 import { SacramentMeeting } from "@/lib/types";
 
-async function getMeetings(): Promise<SacramentMeeting[]> {
+async function fetchMeetings(): Promise<SacramentMeeting[]> {
   const response = await fetch(
-    "https://sacrament-meetings-lrrdwtr69-wdd-434.vercel.app/api/meetings",
+    `${getBaseUrl()}/api/meetings`,
     {
       cache: "no-store",
     }
@@ -13,11 +14,11 @@ async function getMeetings(): Promise<SacramentMeeting[]> {
 }
 
 export default async function MeetingsPage() {
-  const meetings = await getMeetings();
+  const meetings = await fetchMeetings();
 
   return (
     <div>
-      <h1 className="mb-6 text-3xl font-bold">
+      <h1 className="text-3xl font-bold mb-4">
         All Meetings
       </h1>
 

@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
+import { getBaseUrl } from "@/lib/api";
 import MeetingDetail from "@/components/MeetingDetail";
 import { SacramentMeeting } from "@/lib/types";
 
-async function getMeeting(
+async function fetchMeeting(
   id: string
 ): Promise<SacramentMeeting | null> {
   const response = await fetch(
-    `https://sacrament-meetings-lrrdwtr69-wdd-434.vercel.app/api/meetings/${id}`,
+    `${getBaseUrl()}/api/meetings/${id}`,
     {
       cache: "no-store",
     }
@@ -14,10 +15,6 @@ async function getMeeting(
 
   if (response.status === 404) {
     return null;
-  }
-
-  if (!response.ok) {
-    throw new Error("Failed to load meeting");
   }
 
   return response.json();
@@ -30,7 +27,7 @@ export default async function MeetingPage({
 }) {
   const { id } = await params;
 
-  const meeting = await getMeeting(id);
+  const meeting = await fetchMeeting(id);
 
   if (!meeting) {
     notFound();
