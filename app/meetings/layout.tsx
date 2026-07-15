@@ -1,4 +1,7 @@
-import Link from "next/link";
+import "../globals.css";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
 
 export default function MeetingsLayout({
   children,
@@ -6,22 +9,14 @@ export default function MeetingsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <nav className="mb-6 border-b pb-4">
-        <ul className="flex gap-6">
-                  <li>
-                      <Link href="/meetings">
-            All Meetings</Link>
-          </li>
-                  <li>
-                      <Link href="/meetings/current">
-              Current Meeting
-            </Link>
-          </li>
-        </ul>
-      </nav>
+     <html
+      lang="en">
+      <body>
+       
+        {children}
+        
+        </body>
+    </html>
 
-      {children}
-    </div>
   );
 }
