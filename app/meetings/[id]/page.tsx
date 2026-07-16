@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-// import { getBaseUrl } from "@/lib/api";
 import MeetingDetail from "@/components/MeetingDetail";
 import { SacramentMeeting } from "@/lib/types";
 import { headers } from "next/headers";

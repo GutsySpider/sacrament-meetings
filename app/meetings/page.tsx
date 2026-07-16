@@ -1,4 +1,3 @@
-// import { getBaseUrl } from "@/lib/api";
 import MeetingCard from "@/components/MeetingCard";
 import { SacramentMeeting } from "@/lib/types";
 import { headers } from "next/headers";
