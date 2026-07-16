@@ -1,22 +1,23 @@
 import { redirect } from "next/navigation";
-import { meetings } from "@/lib/meetings-db";
+import { getMeetings } from "@/lib/meetings-db";
 
-export default function CurrentMeetingPage() {
+export default async function CurrentPage() {
+  const meetings = await getMeetings();
+
   const today = new Date();
-
   const dayOfWeek = today.getDay();
 
   const sunday = new Date(today);
   sunday.setDate(today.getDate() - dayOfWeek);
 
-  const sundayString = sunday.toISOString().split("T")[0];
+  const sundayDate = sunday.toISOString().split("T")[0];
 
-  const meeting = meetings.find(
-    (m) => m.date === sundayString
+  const currentMeeting = meetings.find(
+    (meeting) => meeting.date === sundayDate
   );
 
-  if (meeting) {
-    redirect(`/meetings/${meeting.id}`);
+  if (currentMeeting) {
+    redirect(`/meetings/${currentMeeting.id}`);
   }
 
   redirect("/meetings");
