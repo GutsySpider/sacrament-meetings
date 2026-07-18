@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { getMeetings } from "@/lib/meetings-db";
 
 export async function GET(request: NextRequest) {
-  const date = request.nextUrl.searchParams.get("date");
+  const query = request.nextUrl.searchParams.get("query") ?? "";
 
-  const meetings = getMeetings(date);
+  const meetings = await getMeetings(query);
 
   return NextResponse.json(meetings);
 }
