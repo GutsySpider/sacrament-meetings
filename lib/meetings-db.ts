@@ -1,12 +1,12 @@
-import { neon } from '@neondatabase/serverless';
-import type { SacramentMeeting } from './types';
+import { neon } from "@neondatabase/serverless";
+import type { SacramentMeeting } from "./types";
 
 const sql = neon(process.env.DATABASE_URL!);
 const ITEMS_PER_PAGE = 5;
 
 export async function getMeetings(
-  query: string = '',
-  currentPage: number = 1
+  query: string = "",
+  currentPage: number = 1,
 ): Promise<SacramentMeeting[]> {
   const searchTerm = `%${query}%`;
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -42,7 +42,7 @@ export async function getMeetings(
 }
 
 export async function getMeetingsTotalPages(
-  query: string = ''
+  query: string = "",
 ): Promise<number> {
   const searchTerm = `%${query}%`;
 
@@ -60,7 +60,7 @@ export async function getMeetingsTotalPages(
 }
 
 export async function getMeetingById(
-  id: number
+  id: number,
 ): Promise<SacramentMeeting | null> {
   const rows = await sql`
     SELECT
@@ -88,7 +88,7 @@ export async function getMeetingById(
 // Week 04
 
 export async function addMeeting(
-  data: Omit<SacramentMeeting, 'id'>
+  data: Omit<SacramentMeeting, "id">,
 ): Promise<SacramentMeeting> {
   const rows = await sql`
     INSERT INTO meetings (
@@ -112,13 +112,13 @@ export async function addMeeting(
       ${data.presiding},
       ${data.conducting},
       ${data.announcements},
-      ${data.openingHymn},
+      ${JSON.stringify(data.openingHymn)},
       ${data.openingPrayer},
-      ${data.wardBusiness},
+      ${JSON.stringify(data.wardBusiness)},
       ${data.stakeBusiness},
-      ${data.sacramentHymn},
+      ${JSON.stringify(data.sacramentHymn)},
       ${JSON.stringify(data.speakers)},
-      ${data.closingHymn},
+      ${JSON.stringify(data.closingHymn)},
       ${data.closingPrayer}
     )
     RETURNING
@@ -143,7 +143,7 @@ export async function addMeeting(
 
 export async function updateMeetingById(
   id: number,
-  updates: Partial<SacramentMeeting>
+  updates: Partial<SacramentMeeting>,
 ): Promise<SacramentMeeting | null> {
   const rows = await sql`
     UPDATE meetings
@@ -153,13 +153,13 @@ export async function updateMeetingById(
       presiding = ${updates.presiding},
       conducting = ${updates.conducting},
       announcements = ${updates.announcements},
-      opening_hymn = ${updates.openingHymn},
+      opening_hymn = ${JSON.stringify(updates.openingHymn)},
       opening_prayer = ${updates.openingPrayer},
-      ward_business = ${updates.wardBusiness},
+      ward_business = ${JSON.stringify(updates.wardBusiness)},
       stake_business = ${updates.stakeBusiness},
-      sacrament_hymn = ${updates.sacramentHymn},
+      sacrament_hymn = ${JSON.stringify(updates.sacramentHymn)},
       speakers = ${JSON.stringify(updates.speakers)},
-      closing_hymn = ${updates.closingHymn},
+      closing_hymn = ${JSON.stringify(updates.closingHymn)},
       closing_prayer = ${updates.closingPrayer}
     WHERE id = ${id}
     RETURNING
@@ -182,9 +182,7 @@ export async function updateMeetingById(
   return (rows[0] as SacramentMeeting) ?? null;
 }
 
-export async function deleteMeetingById(
-  id: number
-): Promise<boolean> {
+export async function deleteMeetingById(id: number): Promise<boolean> {
   const rows = await sql`
     DELETE FROM meetings
     WHERE id = ${id}

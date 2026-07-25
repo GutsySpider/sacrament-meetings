@@ -6,9 +6,7 @@ interface MeetingCardProps {
   meeting: SacramentMeeting;
 }
 
-export default function MeetingCard({
-  meeting,
-}: MeetingCardProps) {
+export default function MeetingCard({ meeting }: MeetingCardProps) {
   return (
     <article className="p-4 border-l-4 border-blue-600 bg-gray-50 rounded">
       <h3 className="text-xl font-bold mb-2">
@@ -34,23 +32,22 @@ export default function MeetingCard({
       <div className="mt-4 flex gap-3">
         <Link
           href={`/meetings/${meeting.id}`}
-          className="text meetings/${meeting.id}/edit`}
-          className="text-green-600
+        className="text-blue-600 hover:underline"
+        >
+          View
+        </Link>
+      
+        <Link
+          href={`/meetings/${meeting.id}/edit`}
+              className="text-green-600 hover:underline"
         >
           Edit
         </Link>
 
         <form action={deleteMeeting}>
-          <input
-            type="hidden"
-            name="id"
-            value={meeting.id}
-          />
+          <input type="hidden" name="id" value={meeting.id} />
 
-          <button
-            type="submit"
-            className="text-red-600 hover:underline"
-          >
+          <button type="submit" className="text-red-600 hover:underline">
             Delete
           </button>
         </form>

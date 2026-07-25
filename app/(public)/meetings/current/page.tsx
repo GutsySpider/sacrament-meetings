@@ -13,7 +13,7 @@ export default async function CurrentPage() {
   const sundayDate = sunday.toISOString().split("T")[0];
 
   const currentMeeting = meetings.find(
-    (meeting) => meeting.date === sundayDate
+    (meeting) => meeting.date === sundayDate,
   );
 
   if (currentMeeting) {

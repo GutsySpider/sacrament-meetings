@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect } from 'react';
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Error({
   error,
@@ -11,7 +11,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('An uncaught meetings error occurred:', error);
+    console.error("An uncaught meetings error occurred:", error);
   }, [error]);
 
   return (
@@ -21,20 +21,22 @@ export default function Error({
       </h1>
 
       <p className="mt-3 text-slate-600">
-        An unexpected error occurred while working with meetings.
-        Please try again.
+        An unexpected error occurred while working with meetings. Please try
+        again.
       </p>
 
       <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <button
           onClick={reset}
-          
+
           className="rounded-md bg-blue-600 px-4 py-2 font-semibold text-white transition hover:bg-blue-700"
         >
           Try Again
         </button>
 
-          <Link href="/meetings" className="rounded-md border border-slate-300 px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-50"
+        <Link
+          href="/meetings"
+          className="rounded-md border border-slate-300 px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-50"
         >
           Back to Meetings
         </Link>

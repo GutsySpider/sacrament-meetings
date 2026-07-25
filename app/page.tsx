@@ -4,9 +4,7 @@ export default function Home() {
   return (
     <div className="space-y-8">
       <section className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">
-          Sacrament Meeting Planner
-        </h1>
+        <h1 className="mb-4 text-4xl font-bold">Sacrament Meeting Planner</h1>
 
         <p className="text-lg text-gray-600">
           View agendas, speakers, hymns, and announcements for upcoming
@@ -21,12 +19,11 @@ export default function Home() {
           width={900}
           height={500}
           className="rounded-lg shadow-lg"
-          priority></Image>
+          priority
+        ></Image>
       </section>
       <section className="card">
-        <h2 className="mb-3 text-2xl font=semibold">
-          Welcome
-        </h2>
+        <h2 className="mb-3 text-2xl font=semibold">Welcome</h2>
 
         <p>
           This application allows ward members and leaders to view sacrament

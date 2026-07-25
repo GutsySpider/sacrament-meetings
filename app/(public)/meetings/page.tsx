@@ -1,10 +1,8 @@
 import MeetingCard from "@/components/MeetingCard";
 import { MeetingSearch } from "@/components/MeetingSearch";
 import { Pagination } from "@/components/Pagination";
-import {
-  getMeetings,
-  getMeetingsTotalPages,
-} from "@/lib/meetings-db";
+import { getMeetings, getMeetingsTotalPages } from "@/lib/meetings-db";
+import Link from "next/link";
 
 interface MeetingsPageProps {
   searchParams?: Promise<{
@@ -26,9 +24,9 @@ export default async function MeetingsPage({
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-4">
-        All Meetings
-      </h1>
+      <h1 className="text-3xl font-bold mb-4">All Meetings</h1>
+
+      <Link href="/meetings/new" className="px-4  hover:bg-blue-700">Add New Meeting</Link>
 
       <div className="mb-6">
         <MeetingSearch />
@@ -36,10 +34,7 @@ export default async function MeetingsPage({
 
       <div className="grid gap-4">
         {meetings.map((meeting) => (
-          <MeetingCard
-            key={meeting.id}
-            meeting={meeting}
-          />
+          <MeetingCard key={meeting.id} meeting={meeting} />
         ))}
       </div>
 

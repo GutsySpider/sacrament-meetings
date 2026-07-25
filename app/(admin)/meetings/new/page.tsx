@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useActionState } from 'react';
-import { createMeeting, type State } from '@/lib/actions';
+import { useActionState } from "react";
+import { createMeeting, type State } from "@/lib/actions";
 
 const initialState: State = {
   message: null,
@@ -9,16 +9,16 @@ const initialState: State = {
 };
 
 export default function NewMeetingPage() {
-  const [state, formAction, isPending] =
-    useActionState(createMeeting, initialState);
+  const [state, formAction, isPending] = useActionState(
+    createMeeting,
+    initialState,
+  );
 
   return (
     <main className="container mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-6 text-3xl font-bold">
-        Create Meeting
-      </h1>
+      <h1 className="mb-6 text-3xl font-bold">Create Meeting</h1>
 
-      <form action= {formAction} className="space-y-4">
+      <form action={formAction} className="space-y-4">
         <div>
           <label htmlFor="date">Date</label>
 
@@ -30,17 +30,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="date-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="date-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.date?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="meetingType">
-            Meeting Type
-          </label>
+          <label htmlFor="meetingType">Meeting Type</label>
 
           <select
             id="meetingType"
@@ -48,28 +48,24 @@ export default function NewMeetingPage() {
             aria-describedby="meetingType-error"
             required
           >
-            <option value="">
-              Select a meeting type
-            </option>
+            <option value="">Select a meeting type</option>
             <option value="regular">Regular</option>
-            <option value="testimony">
-              Testimony
-            </option>
+            <option value="testimony">Testimony</option>
             <option value="stake">Stake</option>
             <option value="general">General</option>
           </select>
 
-          <div
-            id="meetingType-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="meetingType-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.meetingType?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="presiding">
-            Presiding
-          </label>
+          <label htmlFor="presiding">Presiding</label>
 
           <input
             id="presiding"
@@ -79,17 +75,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="presiding-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="presiding-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.presiding?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="conducting">
-            Conducting
-          </label>
+          <label htmlFor="conducting">Conducting</label>
 
           <input
             id="conducting"
@@ -99,17 +95,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="conducting-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="conducting-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.conducting?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="announcements">
-            Announcements
-          </label>
+          <label htmlFor="announcements">Announcements</label>
 
           <textarea
             id="announcements"
@@ -118,17 +114,17 @@ export default function NewMeetingPage() {
             aria-describedby="announcements-error"
           />
 
-          <div
-            id="announcements-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="announcements-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.announcements?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="openingHymn">
-            Opening Hymn
-          </label>
+          <label htmlFor="openingHymn">Opening Hymn</label>
 
           <input
             id="openingHymn"
@@ -138,17 +134,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="openingHymn-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="openingHymn-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.openingHymn?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="openingPrayer">
-            Opening Prayer
-          </label>
+          <label htmlFor="openingPrayer">Opening Prayer</label>
 
           <input
             id="openingPrayer"
@@ -158,17 +154,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="openingPrayer-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="openingPrayer-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.openingPrayer?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="wardBusiness">
-            Ward Business
-          </label>
+          <label htmlFor="wardBusiness">Ward Business</label>
 
           <textarea
             id="wardBusiness"
@@ -177,17 +173,17 @@ export default function NewMeetingPage() {
             aria-describedby="wardBusiness-error"
           />
 
-          <div
-            id="wardBusiness-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="wardBusiness-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.wardBusiness?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="stakeBusiness">
-            Stake Business
-          </label>
+          <label htmlFor="stakeBusiness">Stake Business</label>
 
           <input
             id="stakeBusiness"
@@ -196,17 +192,17 @@ export default function NewMeetingPage() {
             aria-describedby="stakeBusiness-error"
           />
 
-          <div
-            id="stakeBusiness-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="stakeBusiness-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.stakeBusiness?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="sacramentHymn">
-            Sacrament Hymn
-          </label>
+          <label htmlFor="sacramentHymn">Sacrament Hymn</label>
 
           <input
             id="sacramentHymn"
@@ -216,17 +212,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="sacramentHymn-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="sacramentHymn-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.sacramentHymn?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="speakers">
-            Speakers (comma separated)
-          </label>
+          <label htmlFor="speakers">Speakers (comma separated)</label>
 
           <input
             id="speakers"
@@ -236,17 +232,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="speakers-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="speakers-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.speakers?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="closingHymn">
-            Closing Hymn
-          </label>
+          <label htmlFor="closingHymn">Closing Hymn</label>
 
           <input
             id="closingHymn"
@@ -256,17 +252,17 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="closingHymn-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="closingHymn-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.closingHymn?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label htmlFor="closingPrayer">
-            Closing Prayer
-          </label>
+          <label htmlFor="closingPrayer">Closing Prayer</label>
 
           <input
             id="closingPrayer"
@@ -276,19 +272,24 @@ export default function NewMeetingPage() {
             required
           />
 
-          <div
-            id="closingPrayer-error"
-            aria-live="polite"
-            aria-atomic="true"
-          ></div>
+          <div id="closingPrayer-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.closingPrayer?.map((error) => (
+              <p key={error} className="mt-1 text-sm text-red-600">
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
-
+        {state.message && (
+          <p className="text-sm text-red-600">{state.message}</p>
+        )}
         <button
-  type="submit"
-  disabled={isPending}
->
-  {isPending ? 'Saving...' : 'Create Meeting'}
-</button>
+          type="submit"
+          disabled={isPending}
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isPending ? "Saving..." : "Create Meeting"}
+        </button>
       </form>
     </main>
   );

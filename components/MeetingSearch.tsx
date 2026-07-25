@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { useDebouncedCallback } from 'use-debounce';
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 export function MeetingSearch() {
   const searchParams = useSearchParams();
@@ -12,12 +12,12 @@ export function MeetingSearch() {
     const params = new URLSearchParams(searchParams);
 
     // Reset to page 1 whenever a new search is performed
-    params.set('page', '1');
+    params.set("page", "1");
 
     if (term) {
-      params.set('query', term);
+      params.set("query", term);
     } else {
-      params.delete('query');
+      params.delete("query");
     }
 
     push(`${pathname}?${params.toString()}`);
@@ -27,7 +27,7 @@ export function MeetingSearch() {
     <input
       type="search"
       placeholder="Search by speaker, leader, or meeting type..."
-      defaultValue={searchParams.get('query')?.toString()}
+      defaultValue={searchParams.get("query")?.toString()}
       onChange={(e) => handleSearch(e.target.value)}
       aria-label="Search meetings"
       className="w-full rounded-md border px-3 py-2"
