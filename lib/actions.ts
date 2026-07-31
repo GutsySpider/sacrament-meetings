@@ -3,7 +3,8 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
+import { signIn } from "@/auth";
+import { AuthError } from "next-auth";
 import {
   addMeeting,
   updateMeetingById,
@@ -223,4 +224,24 @@ export async function deleteMeeting(formData: FormData) {
   }
 
   revalidatePath("/meetings");
+}
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData
+) {
+  try {
+    await signIn("credentials", formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return "Invalid email or password.";
+        default:
+          return "Something went wrong.";
+      }
+    }
+
+    throw error;
+  }
 }

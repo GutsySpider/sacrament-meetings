@@ -1,9 +1,15 @@
 import Image from "next/image";
-
-export default function Home() {
+import { auth } from "@/auth";
+export default async function Home() {
+  const session = await auth();
   return (
     <div className="space-y-8">
       <section className="text-center">
+        <div>
+          <p>
+            Logged In:        {session?.user?.email ?? "No"}
+          </p>
+        </div>
         <h1 className="mb-4 text-4xl font-bold">Sacrament Meeting Planner</h1>
 
         <p className="text-lg text-gray-600">
@@ -24,7 +30,6 @@ export default function Home() {
       </section>
       <section className="card">
         <h2 className="mb-3 text-2xl font=semibold">Welcome</h2>
-
         <p>
           This application allows ward members and leaders to view sacrament
           meeting agendas, speakers, hymns, and announcements in one place.
