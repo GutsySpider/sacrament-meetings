@@ -1,15 +1,8 @@
 import Image from "next/image";
-import { auth } from "@/auth";
 export default async function Home() {
-  const session = await auth();
   return (
     <div className="space-y-8">
       <section className="text-center">
-        <div>
-          <p>
-            Logged In:        {session?.user?.email ?? "No"}
-          </p>
-        </div>
         <h1 className="mb-4 text-4xl font-bold">Sacrament Meeting Planner</h1>
 
         <p className="text-lg text-gray-600">
