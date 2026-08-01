@@ -1,11 +1,14 @@
-import { logout } from "@/lib/auth-actions";
+import { signOut } from '@/auth';
 
 export function SignOutButton() {
   return (
-    <form action={logout}>
-      <button type="submit">
-        Sign Out
-      </button>
+    <form
+      action={async () => {
+        'use server';
+        await signOut({ redirectTo: '/' });
+      }}
+    >
+      <button type="submit">Sign Out</button>
     </form>
   );
 }

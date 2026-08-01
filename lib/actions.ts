@@ -228,10 +228,17 @@ export async function deleteMeeting(formData: FormData) {
 
 export async function authenticate(
   prevState: string | undefined,
-  formData: FormData
+  formData: FormData,
 ) {
   try {
-    await signIn("credentials", formData);
+    const callbackUrl =
+      (formData.get("callbackUrl") as string) || "/";
+
+    await signIn("credentials", {
+      email: formData.get("email"),
+      password: formData.get("password"),
+      redirectTo: callbackUrl,
+    });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

@@ -3,6 +3,13 @@ import { MeetingSearch } from "@/components/MeetingSearch";
 import { Pagination } from "@/components/Pagination";
 import { getMeetings, getMeetingsTotalPages } from "@/lib/meetings-db";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Ridgecrest Ward Sacrament Meeting Planner home page.",
+};
 
 interface MeetingsPageProps {
   searchParams?: Promise<{
@@ -26,7 +33,7 @@ export default async function MeetingsPage({
     <div>
       <h1 className="text-3xl font-bold mb-4">All Meetings</h1>
 
-      <Link href="/meetings/new" className="px-4  hover:bg-blue-700">Add New Meeting</Link>
+      <Link href="/meetings/new" className="rounded bg-sky-900 pd-5 mg-5 px-4 text-white ">Add New Meeting</Link>
 
       <div className="mb-6">
         <MeetingSearch />
